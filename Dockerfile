@@ -7,10 +7,12 @@ COPY . .
 RUN npm run build
 
 ## Phase 2
-FROM nginx 
 ## We need to place content inside below path of ngnix
 ## There is no start up command for ngnix. It will start 
 ## automatically
+FROM nginx 
+## Expose port is is for EBS to open up firewall
+EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
 
 
